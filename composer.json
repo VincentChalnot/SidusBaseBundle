@@ -1,0 +1,27 @@
+{
+    "name": "sidus/base-bundle",
+    "description": "Ease the declaration of routing and services for Symfony 3 & 4",
+    "keywords": [
+        "symfony",
+        "base"
+    ],
+    "homepage": "https://github.com/VincentChalnot/SidusBaseBundle",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vincent Chalnot",
+            "email": "vincent@sidus.fr",
+            "homepage": "http://chalnot.fr",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sidus\\BaseBundle\\": ""
+        }
+    },
+    "require": {
+        "php": ">=5.6"
+    }
+}

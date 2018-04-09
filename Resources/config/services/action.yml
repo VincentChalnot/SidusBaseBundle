@@ -1,0 +1,7 @@
+services:
+    Sidus\BaseBundle\Action\ControllerResolver:
+        decorates: controller_resolver
+        public: false
+        arguments:
+            - '@service_container'
+            - '@Sidus\BaseBundle\Action\ControllerResolver.inner'
