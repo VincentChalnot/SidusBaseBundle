@@ -46,3 +46,30 @@ service.
 ### Translation
 
 Use the ````TranslatorUtility```` to iterate over various translation keys in order to return the first matching one.
+
+## Validator
+
+You can use the ````BaseLoader```` class to load a sets of constraints from a PHP array with the same syntax than Yaml:
+
+````php
+<?php
+/** @var \Symfony\Component\Validator\Validator\ValidatorInterface $validator */
+
+use Sidus\BaseBundle\Validator\Mapping\Loader\BaseLoader;
+
+$loader = new BaseLoader();
+
+$constraints = $loader->loadCustomConstraints([
+    ['Regex' => ['pattern' => '/^[a-z0-9]+(?:[-\_][a-z0-9]+)*$/']],
+    ['NotNull' => null],
+]);
+
+foreach ($constraints as $constraint) {
+    $violations = $validator->validate($data, $constraint);
+    // Do stuff with the violations
+}
+````
+
+## Forms
+
+The ````ChoiceTypeExtension```` allows choice form types to work with iterable objects. You don't need to do anything.
