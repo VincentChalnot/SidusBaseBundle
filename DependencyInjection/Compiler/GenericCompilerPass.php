@@ -80,7 +80,7 @@ class GenericCompilerPass implements CompilerPassInterface
      *
      * @return int
      */
-    protected function resolvePriority(array $tags): int
+    protected function resolvePriority(array $tags)
     {
         foreach ($tags as $tag) {
             if (array_key_exists('priority', $tag)) {

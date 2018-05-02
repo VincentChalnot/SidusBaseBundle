@@ -40,7 +40,7 @@ class TranslatorUtility
         $humanizeFallback =
         true
     ) {
-        foreach ((array)$tIds as $tId) {
+        foreach ((array) $tIds as $tId) {
             try {
                 if ($translator instanceof TranslatorBagInterface) {
                     if ($translator->getCatalogue()->has($tId)) {
@@ -59,7 +59,7 @@ class TranslatorUtility
             }
         }
 
-        if ($fallback === null) {
+        if (null === $fallback) {
             return null;
         }
         if (!$humanizeFallback) {
