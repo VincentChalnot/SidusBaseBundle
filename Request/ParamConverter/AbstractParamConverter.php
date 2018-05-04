@@ -47,7 +47,7 @@ abstract class AbstractParamConverter implements ParamConverterInterface
             return false;
         }
 
-        $convertedValue = $this->convertValue($value);
+        $convertedValue = $this->convertValue($value, $configuration);
 
         if (null === $convertedValue && false === $configuration->isOptional()) {
             throw new NotFoundHttpException(
@@ -56,9 +56,6 @@ abstract class AbstractParamConverter implements ParamConverterInterface
         }
 
         $request->attributes->set($configuration->getName(), $convertedValue);
-        if ($param !== $configuration->getName()) {
-            $request->attributes->set($param, $convertedValue);
-        }
 
         return true;
     }
@@ -92,11 +89,12 @@ abstract class AbstractParamConverter implements ParamConverterInterface
     }
 
     /**
-     * @param mixed $value
+     * @param mixed          $value
+     * @param ParamConverter $configuration
      *
      * @return mixed
      */
-    abstract protected function convertValue($value);
+    abstract protected function convertValue($value, ParamConverter $configuration);
 
     /**
      * @return mixed
