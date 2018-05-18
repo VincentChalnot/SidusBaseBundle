@@ -1,4 +1,5 @@
 services:
     Sidus\BaseBundle\Form\Extension\ChoiceTypeExtension:
+        class: Sidus\BaseBundle\Form\Extension\ChoiceTypeExtension
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\ChoiceType }
