@@ -1,0 +1,7 @@
+services:
+    Sidus\BaseBundle\Translator\TranslatorDecorator:
+        class: Sidus\BaseBundle\Translator\TranslatorDecorator
+        public: false
+        decorates: translator
+        arguments:
+            - '@Sidus\BaseBundle\Translator\TranslatorDecorator.inner'
