@@ -14,7 +14,7 @@ use DateTime;
 use UnexpectedValueException;
 
 /**
- * @see DateTimeUtility::parse
+ * @see    DateTimeUtility::parse
  *
  * @author Vincent Chalnot <vincent@sidus.fr>
  */
@@ -58,6 +58,13 @@ class DateTimeUtility
         if (!$date) { // Trying deprecated pattern
             /** @noinspection DateTimeConstantsUsageInspection */
             $date = DateTime::createFromFormat(DateTime::ISO8601, $data);
+        }
+        if (!$date && '' !== $data) {
+            try {
+                $date = new \DateTime($data);
+            } catch (\Exception $e) {
+                $date = null;
+            }
         }
         if (!$date) {
             throw new \UnexpectedValueException(
