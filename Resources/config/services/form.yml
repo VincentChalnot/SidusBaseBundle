@@ -4,5 +4,12 @@ services:
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\ChoiceType }
 
-    data_collector.form.extractor:
-        class: Sidus\BaseBundle\Form\Extension\DataCollector\OptimizedFormDataExtractor
+    Sidus\BaseBundle\Form\Extension\BubblePreSetDataEventExtension:
+        class: Sidus\BaseBundle\Form\Extension\BubblePreSetDataEventExtension
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+
+    Sidus\BaseBundle\Form\Extension\CollectionTypeExtension:
+        class: Sidus\BaseBundle\Form\Extension\CollectionTypeExtension
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\CollectionType }
