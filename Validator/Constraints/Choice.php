@@ -11,12 +11,13 @@
 namespace Sidus\BaseBundle\Validator\Constraints;
 
 /**
- * Allows to input the same kind of data in a choice validator than in a ChoiceType (unwrap choice groups)
+ * Allows to input the iterable values instead of only arrays for choice validation
  *
  * @author Vincent Chalnot <vincent@sidus.fr>
  *
  * @Annotation
  */
-class ChoiceUnwrapper extends Choice
+class Choice extends \Symfony\Component\Validator\Constraints\Choice
 {
+    public $allowBlank = true;
 }

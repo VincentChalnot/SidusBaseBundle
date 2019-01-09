@@ -11,7 +11,6 @@
 namespace Sidus\BaseBundle\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\Constraints\ChoiceValidator;
 
 /**
  * Allows to input the same kind of data in a choice validator than in a ChoiceType (unwrap choice groups)
