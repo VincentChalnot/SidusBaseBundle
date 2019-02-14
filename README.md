@@ -73,3 +73,6 @@ foreach ($constraints as $constraint) {
 ## Forms
 
 The ````ChoiceTypeExtension```` allows choice form types to work with iterable objects. You don't need to do anything.
+
+A new option is available for any form type: ```block_prefix``` allows you to directly choose a custom block prefix for
+form rendering.
