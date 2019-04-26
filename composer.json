@@ -6,7 +6,7 @@
         "base"
     ],
     "homepage": "https://github.com/VincentChalnot/SidusBaseBundle",
-    "type": "library",
+    "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
         {

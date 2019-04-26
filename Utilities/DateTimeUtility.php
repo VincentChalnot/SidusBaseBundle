@@ -2,7 +2,7 @@
 /*
  * This file is part of the Sidus/BaseBundle package.
  *
- * Copyright (c) 2015-2018 Vincent Chalnot
+ * Copyright (c) 2015-2019 Vincent Chalnot
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -61,13 +61,13 @@ class DateTimeUtility
         }
         if (!$date && '' !== $data) {
             try {
-                $date = new \DateTime($data);
+                $date = new DateTime($data);
             } catch (\Exception $e) {
                 $date = null;
             }
         }
         if (!$date) {
-            throw new \UnexpectedValueException(
+            throw new UnexpectedValueException(
                 "Unable to parse DateTime value: '{$data}' expecting DateTime or timestamp"
             );
         }

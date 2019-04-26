@@ -2,7 +2,7 @@
 /*
  * This file is part of the Sidus/BaseBundle package.
  *
- * Copyright (c) 2015-2018 Vincent Chalnot
+ * Copyright (c) 2015-2019 Vincent Chalnot
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -28,7 +28,7 @@ abstract class AbstractParamConverter implements ParamConverterInterface
      * @param Request        $request
      * @param ParamConverter $configuration Contains the name, class and options of the object
      *
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws NotFoundHttpException
      * @throws \InvalidArgumentException
      *
      * @return bool True if the object has been successfully set, else false

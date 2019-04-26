@@ -76,3 +76,76 @@ The ````ChoiceTypeExtension```` allows choice form types to work with iterable o
 
 A new option is available for any form type: ```block_prefix``` allows you to directly choose a custom block prefix for
 form rendering.
+
+## Serializer
+
+The NestedPropertyDenormalizer can be very useful for denormalizing API responses into proper model entities, it works
+without any setters and can denormalize embed data and embed entity collections based on very simple annotations.
+
+### Installation
+
+You need to manually require the symfony/serializer package in order for this to work, then add this definition in your
+services definitions:
+
+```yaml
+services:
+    Sidus\BaseBundle\Serializer\Normalizer\NestedPropertyDenormalizer:
+        public: false
+        arguments:
+            - '@serializer.mapping.class_metadata_factory'
+            - '@serializer.name_converter.camel_case_to_snake_case' # Configure this according to your needs
+            - '@?property_info'
+        calls:
+            - [setAnnotationReader, ['@annotations.reader']]
+        tags:
+            - { name: serializer.normalizer, priority: -999 } # Change the priority if needed
+```
+
+This denormalizer will only work on PHP classes with the ```@NestedPropertyDenormalizer``` annotation.
+
+### Configuration
+
+Configuration example
+
+```php
+<?php
+
+namespace FooBar\Model;
+
+use Sidus\BaseBundle\Serializer\Annotation\NestedClass;
+use Sidus\BaseBundle\Serializer\Annotation\NestedPropertyDenormalizer;
+
+/**
+ * @NestedPropertyDenormalizer()
+ */
+class Book
+{
+    /** @var string */
+    protected $id;
+    
+    /**
+     * @var \DateTimeInterface|null
+     *
+     * @NestedClass(targetClass="DateTime")
+     */
+    protected $publicationDate;
+    
+    /**
+     * @var Author|null
+     *
+     * @NestedClass(targetClass="FooBar\Model\Author")
+     */
+    protected $author;
+
+    /**
+     * @var Edition[]
+     *
+     * @NestedClass(targetClass="FooBar\Model\Edition", multiple=true)
+     */
+    protected $editions = [];
+    
+    // Here be getters (no setters needed)
+}
+```
+
+Note that the ```@NestedClass``` annotation can target any class.
