@@ -112,10 +112,17 @@ class NestedPropertyDenormalizer extends PropertyNormalizer
     protected function denormalizeNested(NestedClass $nestedClassAnnotation, $value)
     {
         if (!$nestedClassAnnotation->multiple) {
+            if (null === $value && $nestedClassAnnotation->nullable) {
+                return null;
+            }
+
             return $this->serializer->denormalize($value, $nestedClassAnnotation->targetClass);
         }
 
         if (!\is_iterable($value)) {
+            if (null === $value && $nestedClassAnnotation->nullable) {
+                return null;
+            }
             throw new \UnexpectedValueException('Value should be an array');
         }
         $values = [];

@@ -30,6 +30,9 @@ class NestedClass
     /** @var bool */
     public $multiple = false;
 
+    /** @var bool */
+    public $nullable = false;
+
     /**
      * @param array $config
      *
@@ -45,6 +48,9 @@ class NestedClass
         }
         if (array_key_exists('multiple', $config)) {
             $this->multiple = (bool) $config['multiple'];
+        }
+        if (array_key_exists('nullable', $config)) {
+            $this->nullable = (bool) $config['nullable'];
         }
         if (!class_exists($this->targetClass)) {
             throw new \UnexpectedValueException("Missing class {$this->targetClass}");
