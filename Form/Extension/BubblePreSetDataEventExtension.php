@@ -27,7 +27,7 @@ class BubblePreSetDataEventExtension extends AbstractTypeExtension
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // Only *_SET_DATA events are concerned
         foreach ([FormEvents::PRE_SET_DATA, FormEvents::POST_SET_DATA] as $eventName) {
@@ -50,7 +50,7 @@ class BubblePreSetDataEventExtension extends AbstractTypeExtension
     /**
      * @return string
      */
-    public function getExtendedType(): string
+    public function getExtendedType()
     {
         return FormType::class;
     }

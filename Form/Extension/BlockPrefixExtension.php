@@ -26,7 +26,7 @@ class BlockPrefixExtension extends AbstractTypeExtension
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             [
@@ -40,7 +40,7 @@ class BlockPrefixExtension extends AbstractTypeExtension
      * @param FormInterface $form
      * @param array         $options
      */
-    public function buildView(FormView $view, FormInterface $form, array $options): void
+    public function buildView(FormView $view, FormInterface $form, array $options)
     {
         if (null !== $options['block_prefix']) {
             array_splice(
@@ -55,7 +55,7 @@ class BlockPrefixExtension extends AbstractTypeExtension
     /**
      * @return string
      */
-    public function getExtendedType(): string
+    public function getExtendedType()
     {
         return FormType::class;
     }
