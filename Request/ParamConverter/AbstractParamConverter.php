@@ -10,6 +10,7 @@
 
 namespace Sidus\BaseBundle\Request\ParamConverter;
 
+use InvalidArgumentException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +30,7 @@ abstract class AbstractParamConverter implements ParamConverterInterface
      * @param ParamConverter $configuration Contains the name, class and options of the object
      *
      * @throws NotFoundHttpException
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      *
      * @return bool True if the object has been successfully set, else false
      */
@@ -97,7 +98,7 @@ abstract class AbstractParamConverter implements ParamConverterInterface
     abstract protected function convertValue($value, ParamConverter $configuration);
 
     /**
-     * @return mixed
+     * @return string
      */
     abstract protected function getClass();
 }

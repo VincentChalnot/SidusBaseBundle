@@ -36,8 +36,6 @@ class ServiceLoader
     /**
      * @param string $path
      * @param string $extension
-     *
-     * @throws \Exception
      */
     public function loadFiles(string $path, $extension = 'yml')
     {

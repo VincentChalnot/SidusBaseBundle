@@ -10,6 +10,7 @@
 
 namespace Sidus\BaseBundle\Form\Extension;
 
+use InvalidArgumentException;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\DataMapper\PropertyPathMapper;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -28,7 +29,7 @@ class CollectionTypeExtension extends AbstractTypeExtension
      * @param FormBuilderInterface $builder
      * @param array                $options
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

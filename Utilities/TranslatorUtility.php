@@ -10,6 +10,7 @@
 
 namespace Sidus\BaseBundle\Utilities;
 
+use InvalidArgumentException;
 use Symfony\Component\Translation\TranslatorBagInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -54,7 +55,7 @@ class TranslatorUtility
                         return $label;
                     }
                 }
-            } catch (\InvalidArgumentException $e) {
+            } catch (InvalidArgumentException $e) {
                 // Do nothing
             }
         }

@@ -10,6 +10,9 @@
 
 namespace Sidus\BaseBundle\Utilities;
 
+use ReflectionClass;
+use function in_array;
+
 /**
  * Use this class to output the proper values for the magic __sleep method when you want to exclude certain properties
  *
@@ -26,9 +29,9 @@ class SleepUtility
     public static function sleep($class, array $excludedProperties = [])
     {
         $propertyNames = [];
-        $refl = new \ReflectionClass($class);
+        $refl = new ReflectionClass($class);
         foreach ($refl->getProperties() as $property) {
-            if (\in_array($property->getName(), $excludedProperties, true)) {
+            if (in_array($property->getName(), $excludedProperties, true)) {
                 continue;
             }
             $propertyNames[] = $property->getName();

@@ -11,6 +11,7 @@
 namespace Sidus\BaseBundle\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
+use Traversable;
 
 /**
  * Allows to input the iterable values instead of only arrays for choice validation
@@ -26,7 +27,7 @@ class ChoiceValidator extends \Symfony\Component\Validator\Constraints\ChoiceVal
      */
     public function validate($value, Constraint $constraint)
     {
-        if ($value instanceof \Traversable) {
+        if ($value instanceof Traversable) {
             $value = iterator_to_array($value);
         }
 

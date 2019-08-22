@@ -12,6 +12,8 @@ namespace Sidus\BaseBundle\Utilities;
 
 use Symfony\Component\VarDumper\Caster\Caster;
 use Symfony\Component\VarDumper\Caster\CutStub;
+use function get_class;
+use function in_array;
 
 /**
  * Easy debug info builder with exclusion support
@@ -26,9 +28,9 @@ class DebugInfoUtility
      */
     public static function debugInfo($a, array $excludedProperties = [])
     {
-        $a = Caster::castObject($a, \get_class($a), false);
+        $a = Caster::castObject($a, get_class($a), false);
         foreach ($a as $k => $v) {
-            if (\in_array($k, $excludedProperties, true)) {
+            if (in_array($k, $excludedProperties, true)) {
                 $a[$k] = new CutStub($a[$k]);
             }
         }

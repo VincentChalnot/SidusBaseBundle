@@ -11,6 +11,7 @@
 namespace Sidus\BaseBundle\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
+use function is_array;
 
 /**
  * Allows to input the same kind of data in a choice validator than in a ChoiceType (unwrap choice groups)
@@ -31,10 +32,10 @@ class ChoiceUnwrapperValidator extends ChoiceValidator
                 return;
             }
             $resolvedChoices = [];
-            if (\is_array($constraint->choices)) {
+            if (is_array($constraint->choices)) {
                 /** @noinspection ForeachSourceInspection */
                 foreach ($constraint->choices as $choice) {
-                    if (\is_array($choice)) {
+                    if (is_array($choice)) {
                         /** @var array $choice */
                         foreach ($choice as $subChoice) {
                             $resolvedChoices[] = $subChoice;

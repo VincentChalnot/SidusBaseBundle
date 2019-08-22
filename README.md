@@ -53,9 +53,9 @@ You can use the ````BaseLoader```` class to load a sets of constraints from a PH
 
 ````php
 <?php
-/** @var \Symfony\Component\Validator\Validator\ValidatorInterface $validator */
+/** @var ValidatorInterface $validator */
 
-use Sidus\BaseBundle\Validator\Mapping\Loader\BaseLoader;
+use Sidus\BaseBundle\Validator\Mapping\Loader\BaseLoader;use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 $loader = new BaseLoader();
 

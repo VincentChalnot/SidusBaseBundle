@@ -11,7 +11,9 @@
 namespace Sidus\BaseBundle\Utilities;
 
 use DateTime;
+use Exception;
 use UnexpectedValueException;
+use function is_int;
 
 /**
  * @see    DateTimeUtility::parse
@@ -45,7 +47,7 @@ class DateTimeUtility
             return $data;
         }
 
-        if (\is_int($data)) {
+        if (is_int($data)) {
             if (0 === $data) {
                 throw new UnexpectedValueException('Expecting timestamp, numeric value "0" given');
             }
@@ -62,7 +64,7 @@ class DateTimeUtility
         if (!$date && '' !== $data) {
             try {
                 $date = new DateTime($data);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $date = null;
             }
         }

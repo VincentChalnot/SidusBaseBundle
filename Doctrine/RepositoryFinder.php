@@ -13,6 +13,7 @@ namespace Sidus\BaseBundle\Doctrine;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use UnexpectedValueException;
 
 /**
  * Simplified access to entities repository with proper exception management
@@ -43,11 +44,11 @@ class RepositoryFinder
     {
         $entityManager = $this->doctrine->getManagerForClass($className);
         if (!$entityManager instanceof EntityManagerInterface) {
-            throw new \UnexpectedValueException("No manager found for class {$className}");
+            throw new UnexpectedValueException("No manager found for class {$className}");
         }
         $repository = $entityManager->getRepository($className);
         if (!$repository instanceof EntityRepository) {
-            throw new \UnexpectedValueException("No repository found for class {$className}");
+            throw new UnexpectedValueException("No repository found for class {$className}");
         }
 
         return $repository;

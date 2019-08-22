@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use function in_array;
 
 /**
  * Adds a custom block_prefix option to adds a block prefix to the automatically computed ones
@@ -42,7 +43,9 @@ class BlockPrefixExtension extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        if (null !== $options['block_prefix']) {
+        if (null !== $options['block_prefix']
+            && !in_array($options['block_prefix'], $view->vars['block_prefixes'], true)
+        ) {
             array_splice(
                 $view->vars['block_prefixes'],
                 -1,

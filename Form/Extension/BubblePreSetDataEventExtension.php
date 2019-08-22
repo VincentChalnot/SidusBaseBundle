@@ -33,7 +33,7 @@ class BubblePreSetDataEventExtension extends AbstractTypeExtension
         foreach ([FormEvents::PRE_SET_DATA, FormEvents::POST_SET_DATA] as $eventName) {
             $builder->addEventListener(
                 $eventName,
-                function (FormEvent $event) use ($eventName) {
+                static function (FormEvent $event) use ($eventName) {
                     // Look for "inherit_data" child
                     foreach ($event->getForm() as $child) {
                         if ($child instanceof FormInterface && $child->getConfig()->getInheritData()) {

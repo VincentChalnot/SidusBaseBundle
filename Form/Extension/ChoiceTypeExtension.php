@@ -10,10 +10,12 @@
 
 namespace Sidus\BaseBundle\Form\Extension;
 
+use InvalidArgumentException;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Traversable;
 
 /**
  * Allow multiple choices to handle iterators
@@ -26,20 +28,20 @@ class ChoiceTypeExtension extends AbstractTypeExtension
      * @param FormBuilderInterface $builder
      * @param array                $options
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addModelTransformer(
             new CallbackTransformer(
-                function ($toView) {
-                    if ($toView instanceof \Traversable) {
+                static function ($toView) {
+                    if ($toView instanceof Traversable) {
                         return iterator_to_array($toView);
                     }
 
                     return $toView;
                 },
-                function ($toModel) {
+                static function ($toModel) {
                     return $toModel;
                 }
             )
