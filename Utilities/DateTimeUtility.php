@@ -43,7 +43,7 @@ class DateTimeUtility
             throw new UnexpectedValueException('Expecting DateTime or timestamp, null given');
         }
 
-        if ($data instanceof DateTime) {
+        if ($data instanceof \DateTimeInterface) {
             return $data;
         }
 
