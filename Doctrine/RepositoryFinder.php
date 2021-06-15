@@ -2,7 +2,7 @@
 /*
  * This file is part of the Sidus/BaseBundle package.
  *
- * Copyright (c) 2015-2019 Vincent Chalnot
+ * Copyright (c) 2015-2021 Vincent Chalnot
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -10,7 +10,7 @@
 
 namespace Sidus\BaseBundle\Doctrine;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use UnexpectedValueException;

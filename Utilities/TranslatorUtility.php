@@ -2,7 +2,7 @@
 /*
  * This file is part of the Sidus/BaseBundle package.
  *
- * Copyright (c) 2015-2019 Vincent Chalnot
+ * Copyright (c) 2015-2021 Vincent Chalnot
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,7 +12,7 @@ namespace Sidus\BaseBundle\Utilities;
 
 use InvalidArgumentException;
 use Symfony\Component\Translation\TranslatorBagInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @see    TranslatorUtility::tryTranslate
@@ -36,17 +36,13 @@ class TranslatorUtility
         TranslatorInterface $translator,
         $tIds,
         array $parameters = [],
-        $fallback =
-        null,
-        $humanizeFallback =
-        true
+        $fallback = null,
+        $humanizeFallback = true
     ) {
         foreach ((array) $tIds as $tId) {
             try {
                 if ($translator instanceof TranslatorBagInterface) {
                     if ($translator->getCatalogue()->has($tId)) {
-                        /** @noinspection PhpUndefinedMethodInspection */
-
                         return $translator->trans($tId, $parameters);
                     }
                 } elseif ($translator instanceof TranslatorInterface) {

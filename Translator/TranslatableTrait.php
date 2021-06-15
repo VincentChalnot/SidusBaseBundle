@@ -2,7 +2,7 @@
 /*
  * This file is part of the Sidus/BaseBundle package.
  *
- * Copyright (c) 2015-2019 Vincent Chalnot
+ * Copyright (c) 2015-2021 Vincent Chalnot
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,7 +11,7 @@
 namespace Sidus\BaseBundle\Translator;
 
 use Sidus\BaseBundle\Utilities\TranslatorUtility;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Used to try multiple translations with fallback
@@ -20,9 +20,7 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 trait TranslatableTrait
 {
-    /**
-     * @var TranslatorInterface
-     */
+    /** @var TranslatorInterface */
     protected $translator;
 
     /**
@@ -38,7 +36,7 @@ trait TranslatableTrait
      *
      * @param string|array $tIds
      * @param array        $parameters
-     * @param string       $fallback
+     * @param string|null  $fallback
      * @param bool         $humanizeFallback
      *
      * @return string

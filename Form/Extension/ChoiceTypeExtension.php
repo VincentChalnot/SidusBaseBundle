@@ -2,7 +2,7 @@
 /*
  * This file is part of the Sidus/BaseBundle package.
  *
- * Copyright (c) 2015-2019 Vincent Chalnot
+ * Copyright (c) 2015-2021 Vincent Chalnot
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -57,4 +57,10 @@ class ChoiceTypeExtension extends AbstractTypeExtension
     {
         return ChoiceType::class;
     }
+
+    public static function getExtendedTypes(): iterable
+    {
+        return [ChoiceType::class];
+    }
+
 }
