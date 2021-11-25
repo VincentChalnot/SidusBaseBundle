@@ -1,0 +1,5 @@
+services:
+    Sidus\BaseBundle\Utilities\BinarySizeUtility:
+        public: false
+    Sidus\BaseBundle\Utilities\DateTimeUtility:
+        public: false
