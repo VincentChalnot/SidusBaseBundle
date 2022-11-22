@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace Sidus\BaseBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -22,41 +24,14 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class GenericCompilerPass implements CompilerPassInterface
 {
-    /** @var string */
-    protected $registry;
-
-    /** @var string */
-    protected $tag;
-
-    /** @var string */
-    protected $method;
-
-    /** @var bool */
-    protected $withPriority;
-
-    /**
-     * @param string $registry
-     * @param string $tag
-     * @param string $method
-     * @param bool   $withPriority
-     */
-    public function __construct($registry, $tag, $method, $withPriority = false)
-    {
-        $this->registry = $registry;
-        $this->tag = $tag;
-        $this->method = $method;
-        $this->withPriority = $withPriority;
+    public function __construct(
+        private string $registry,
+        private string $tag,
+        private string $method,
+        private bool $withPriority = false
+    ) {
     }
 
-    /**
-     * Inject tagged services into defined registry
-     *
-     * @api
-     *
-     * @param ContainerBuilder $container
-     *
-     * @throws InvalidArgumentException
-     */
     public function process(ContainerBuilder $container)
     {
         if (!$container->has($this->registry)) {
@@ -75,12 +50,7 @@ class GenericCompilerPass implements CompilerPassInterface
         }
     }
 
-    /**
-     * @param array $tags
-     *
-     * @return int
-     */
-    protected function resolvePriority(array $tags)
+    private function resolvePriority(array $tags): int
     {
         foreach ($tags as $tag) {
             if (array_key_exists('priority', $tag)) {

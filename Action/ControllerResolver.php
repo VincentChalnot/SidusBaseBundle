@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace Sidus\BaseBundle\Action;
 
 use Psr\Container\ContainerInterface;
@@ -21,26 +23,13 @@ use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
  */
 class ControllerResolver implements ControllerResolverInterface
 {
-    /** @var ContainerInterface */
-    protected $container;
-
-    /** @var ControllerResolverInterface */
-    protected $baseControllerResolver;
-
-    /**
-     * @param ContainerInterface          $container
-     * @param ControllerResolverInterface $baseControllerResolver
-     */
-    public function __construct(ContainerInterface $container, ControllerResolverInterface $baseControllerResolver)
-    {
-        $this->container = $container;
-        $this->baseControllerResolver = $baseControllerResolver;
+    public function __construct(
+        private ContainerInterface $container,
+        private ControllerResolverInterface $baseControllerResolver,
+    ) {
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getController(Request $request)
+    public function getController(Request $request): callable|false
     {
         if (!$request->attributes->get('_controller')) {
             $route = $request->attributes->get('_route');
@@ -54,9 +43,6 @@ class ControllerResolver implements ControllerResolverInterface
         return $this->baseControllerResolver->getController($request);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getArguments(Request $request, $controller)
     {
         return $this->baseControllerResolver->getArguments($request, $controller);
