@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace Sidus\BaseBundle\DependencyInjection;
 
 use ReflectionClass;
@@ -26,7 +28,7 @@ class SidusBaseExtension extends Extension
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $refl = new ReflectionClass($this); // Supports for class extending this one
         $loader = new ServiceLoader($container);

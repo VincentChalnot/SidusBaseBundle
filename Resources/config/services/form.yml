@@ -8,13 +8,3 @@ services:
         class: Sidus\BaseBundle\Form\Extension\BubblePreSetDataEventExtension
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
-
-    Sidus\BaseBundle\Form\Extension\CollectionTypeExtension:
-        class: Sidus\BaseBundle\Form\Extension\CollectionTypeExtension
-        tags:
-            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\CollectionType }
-
-    Sidus\BaseBundle\Form\Extension\BlockPrefixExtension:
-        class: Sidus\BaseBundle\Form\Extension\BlockPrefixExtension
-        tags:
-            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }

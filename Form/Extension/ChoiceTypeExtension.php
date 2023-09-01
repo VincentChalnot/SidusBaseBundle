@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace Sidus\BaseBundle\Form\Extension;
 
 use InvalidArgumentException;
@@ -30,7 +32,7 @@ class ChoiceTypeExtension extends AbstractTypeExtension
      *
      * @throws InvalidArgumentException
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addModelTransformer(
             new CallbackTransformer(
@@ -48,12 +50,7 @@ class ChoiceTypeExtension extends AbstractTypeExtension
         );
     }
 
-    /**
-     * Returns the name of the type being extended.
-     *
-     * @return string The name of the type being extended
-     */
-    public function getExtendedType()
+    public function getExtendedType(): string
     {
         return ChoiceType::class;
     }
@@ -62,5 +59,4 @@ class ChoiceTypeExtension extends AbstractTypeExtension
     {
         return [ChoiceType::class];
     }
-
 }

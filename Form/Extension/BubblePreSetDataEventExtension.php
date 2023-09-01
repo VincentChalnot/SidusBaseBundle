@@ -5,6 +5,8 @@
  * https://github.com/symfony/symfony/issues/8834#issuecomment-330831471
  */
 
+declare(strict_types=1);
+
 namespace Sidus\BaseBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
@@ -27,7 +29,7 @@ class BubblePreSetDataEventExtension extends AbstractTypeExtension
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         // Only *_SET_DATA events are concerned
         foreach ([FormEvents::PRE_SET_DATA, FormEvents::POST_SET_DATA] as $eventName) {
@@ -39,7 +41,7 @@ class BubblePreSetDataEventExtension extends AbstractTypeExtension
                         if ($child instanceof FormInterface && $child->getConfig()->getInheritData()) {
                             // Create a new event and dispatch it to the child
                             $childEvent = new FormEvent($child, $event->getData());
-                            $child->getConfig()->getEventDispatcher()->dispatch($eventName, $childEvent);
+                            $child->getConfig()->getEventDispatcher()->dispatch($childEvent, $eventName);
                         }
                     }
                 }
@@ -47,10 +49,7 @@ class BubblePreSetDataEventExtension extends AbstractTypeExtension
         }
     }
 
-    /**
-     * @return string
-     */
-    public function getExtendedType()
+    public function getExtendedType(): string
     {
         return FormType::class;
     }

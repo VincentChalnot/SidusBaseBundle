@@ -44,7 +44,7 @@ class TranslatorDecorator implements TranslatorInterface, TranslatorBagInterface
         return $this->translator->trans($id, $parameters, $domain, $locale);
     }
 
-    public function setLocale(string $locale)
+    public function setLocale(string $locale): void
     {
         $this->translator->setLocale($locale);
     }
