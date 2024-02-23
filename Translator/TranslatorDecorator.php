@@ -5,12 +5,13 @@ namespace Sidus\BaseBundle\Translator;
 use Symfony\Component\Translation\Exception\InvalidArgumentException;
 use Symfony\Component\Translation\MessageCatalogueInterface;
 use Symfony\Component\Translation\TranslatorBagInterface;
+use Symfony\Contracts\Translation\LocaleAwareInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Overrides base translator to ignore translations when domain is false
  */
-class TranslatorDecorator implements TranslatorInterface, TranslatorBagInterface
+class TranslatorDecorator implements TranslatorInterface, TranslatorBagInterface, LocaleAwareInterface
 {
     /** @var TranslatorInterface */
     protected $translator;
@@ -50,7 +51,7 @@ class TranslatorDecorator implements TranslatorInterface, TranslatorBagInterface
     /**
      * {@inheritdoc}
      */
-    public function setLocale($locale)
+    public function setLocale(string $locale)
     {
         $this->translator->setLocale($locale);
     }
